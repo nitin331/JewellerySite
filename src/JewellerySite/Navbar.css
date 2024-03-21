@@ -214,12 +214,14 @@ body {
 .social-icon.instagram:hover {
   color: maroon; /* Hover color for Instagram */
 }
+.cart-link {
+  position: relative; /* Make the cart link container position relative */
+}
 
-/* Add this CSS to style the cart count */
 .cart-count {
-  position: absolute;
-  top: -8px;
-  right: -8px;
+  position: absolute; /* Position the cart count absolutely */
+  top: -8px; /* Adjust the vertical position */
+  right: -8px; /* Adjust the horizontal position */
   background-color: white;
   color: black;
   border-radius: 50%;
@@ -227,3 +229,9 @@ body {
   font-size: 12px;
 }
 
+@media screen and (max-width: 770px) {
+  .cart-count {
+    top: -6px; /* Adjust the vertical position for smaller screens */
+    right: -6px; /* Adjust the horizontal position for smaller screens */
+  }
+}
