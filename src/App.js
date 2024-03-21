@@ -25,7 +25,7 @@ const App = () => {
   });
   const [cartCount, setCartCount] = useState(0);
 
-  // Save cart data to local storage whenever it changes
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
@@ -45,15 +45,15 @@ const App = () => {
     const existingProductIndex = cart.findIndex(item => item.id === product.id);
 
     if (existingProductIndex !== -1) {
-      // If the product exists, update its quantity
+    
       const updatedCart = [...cart];
-      updatedCart[existingProductIndex].quantity += 1; // Assuming each product object has a 'quantity' property
+      updatedCart[existingProductIndex].quantity += 1;
       setCart(updatedCart);
     } else {
-      // If the product is not in the cart, add it
-      setCart([...cart, {...product, quantity: 1}]); // Assuming each product object has a 'quantity' property
+    
+      setCart([...cart, {...product, quantity: 1}]); 
   
-      // Update the cart count only if a new product is added
+      
       const newCartCount = cartCount + 1;
       setCartCount(newCartCount);
       localStorage.setItem('cartCount', newCartCount);
@@ -69,7 +69,6 @@ const App = () => {
     if (!productToRemove) return;
   
   
-    // Decrease the cart count by the quantity of the removed product
     const newCartCount = cartCount - productToRemove.quantity;
     setCartCount(newCartCount);
     localStorage.setItem('cartCount', newCartCount);
