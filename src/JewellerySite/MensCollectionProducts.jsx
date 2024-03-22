@@ -18,6 +18,8 @@ import './Bracelet.css';
 const MensCollectionProducts = ({ products, addToCart }) => {
   const [open, setOpen] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [cartItems, setCartItems] = useState([]);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -27,8 +29,21 @@ const MensCollectionProducts = ({ products, addToCart }) => {
     if (reason === 'clickaway') {
       return;
     }
-
     setSnackbarOpen(false);
+  };
+
+  const handleAddToCart = (product) => {
+    const alreadyInCart = cartItems.some((item) => item.id === product.id);
+
+    if (alreadyInCart) {
+      setSnackbarMessage('Item is already in the cart.');
+    } else {
+      setCartItems([...cartItems, product]);
+      addToCart(product);
+      setSnackbarMessage('Item has been added to the cart.');
+    }
+
+    setSnackbarOpen(true);
   };
 
   const DrawerList = (
@@ -60,11 +75,6 @@ const MensCollectionProducts = ({ products, addToCart }) => {
     </Box>
   );
 
-  const handleAddToCart = (product) => {
-    addToCart(product);
-    setSnackbarOpen(true);
-  };
-
   return (
     <div>
       <div className="container">
@@ -92,7 +102,7 @@ const MensCollectionProducts = ({ products, addToCart }) => {
       </div>
       <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
         <MuiAlert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
-          Item has been added to the cart.
+          {snackbarMessage}
         </MuiAlert>
       </Snackbar>
     </div>
