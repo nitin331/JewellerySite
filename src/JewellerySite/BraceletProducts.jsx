@@ -79,7 +79,7 @@ const BraceletProducts = ({ products, addToCart }) => {
     <div>
       <div className="container">
         <center>
-          <h1>Mens Collection</h1>
+          <h1>Bangles & Bracelet</h1>
         </center>
         <div className="btn">
           <Button onClick={toggleDrawer(true)}>Filter</Button>
